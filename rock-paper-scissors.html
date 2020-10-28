@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Page Title</title>
+  <title>Rock Paper Scissors</title>
   <meta charset="UTF-8"/>
 </head>
 <body>
@@ -52,11 +52,16 @@
       }
     function game() {
         for (i=0; i<5; i++)
-        console.log(playRound());
+        alert(playRound());
+        if (loseCount > winCount) {
+          alert("You've beaten the computer!");
+        } else if (loseCount == winCount) {
+          alert("You couldn't beat the computer this time. It's a tie.")
+        } else if (loseCount < winCount) {
+          alert("The computer has beaten you!")
+        }
     }
-    console.log(game())
-    console.log(winCount)
-    console.log(loseCount)
+    game()
   </script>
 </body>
 </html>
