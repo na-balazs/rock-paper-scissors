@@ -24,46 +24,59 @@
         playerSelection = prompt("Choose: rock, paper, scissors:","");
         playerSelection.toLowerCase();
         if (playerSelection === "rock" && computerSelection === "paper") {
-            return "Paper beats rock!";
-            loseCount++;
+            alert("Paper beats rock!");
+            return loseCount++;
         } else if (playerSelection === "paper" && computerSelection === "rock") {
-            return "Paper beats rock!";
-            winCount++;
+            alert("Paper beats rock!");
+            return winCount++;
         } else if (playerSelection === "scissors" && computerSelection === "rock") {
-            return "Rock beats scissors!";
-            loseCount++;
+            alert("Rock beats scissors!");
+            return loseCount++;
         } else if (playerSelection === "rock" && computerSelection === "scissors") {
-            return "Rock beats scissors!";
-            winCount++;
+            alert("Rock beats scissors!"); 
+            return winCount++;
         } else if (playerSelection === "paper" && computerSelection === "scissors") {
-            return "Scissors beats paper!";
-            loseCount++;
+            alert("Scissors beats paper!") && loseCount++;
         } else if (playerSelection === "paper" && computerSelection === "paper") {
-            return "It's a tie!";
+            alert("It's a tie!");
         } else if (playerSelection === "scissors" && computerSelection === "scissors") {
-            return "It's a tie!";
+            alert("It's a tie!");
         } else if (playerSelection === "rock" && computerSelection === "rock") {
-            return "It's a tie!";
+            alert("It's a tie!");
         } else if (playerSelection === "scissors" && computerSelection === "paper") {
-            return "Scissors beats paper!";
-            winCount++;
+            alert("Scissors beats paper!");
+            return winCount++;
         } else {
-            return "I don't understand that. Did you spell it right?";
+            alert("I don't understand that. Did you spell it right?");
+            playRound();
         }
     }
     function game() {
         for (i=0; i<5; i++)
-        alert(playRound());
-        if (loseCount > winCount) {
-          alert("You've beaten the computer!");
+        playRound();
+        if (loseCount < winCount) {
+          alert("You've beaten the computer!   (づ｡◕‿‿◕｡)づ");
         } else if (loseCount == winCount) {
-          alert("You couldn't beat the computer this time. It's a tie.")
-        } else if (loseCount < winCount) {
-          alert("The computer has beaten you!")
+          alert("You couldn't beat the computer this time. It's a tie.   (づ｡◕‿‿◕｡)づ")
+        } else if (loseCount > winCount) {
+          alert("The computer has beaten you!   (づ｡◕‿‿◕｡)づ")
         }
     }
+    /* function ending() {
+        let playerSelectionX = prompt("Do you want to play another round? State it by typing 'yes' or 'no'.","")
+        playerSelectionX.toLowerCase();
+        if (playerSelection === "yes") {
+            game();
+        } else if (playerSelection === "no") {
+            alert("Bye!  (づ｡◕‿‿◕｡)づ");
+        } else {
+            alert("I don't understand that. Did you spell it right?");
+            ending();
+        }
+    } */
     alert("This is a game of rock-paper-scissors. Surely you know it. Let's start.")
     game()
+    /* ending() */
   </script>
 </body>
 </html>
