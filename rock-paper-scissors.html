@@ -6,6 +6,9 @@
 </head>
 <body>
   <script>
+    let winCount = 0;
+    let loseCount = 0;
+
     function computerPlay() {
         let num = Math.floor(Math.random() * 3);
         if (num === 0) {
@@ -16,27 +19,25 @@
             return "scissors";
         }
     }
-    let winCount = 0;
-    let loseCount = 0;
     function playRound(playerSelection, computerSelection) {
         computerSelection = computerPlay();
         playerSelection = prompt("Choose: rock, paper, scissors:","");
         playerSelection.toLowerCase();
         if (playerSelection === "rock" && computerSelection === "paper") {
             return "Paper beats rock!";
-            loseCount + 1;
+            loseCount++;
         } else if (playerSelection === "paper" && computerSelection === "rock") {
             return "Paper beats rock!";
-            winCount + 1;
+            winCount++;
         } else if (playerSelection === "scissors" && computerSelection === "rock") {
             return "Rock beats scissors!";
-            loseCount + 1;
+            loseCount++;
         } else if (playerSelection === "rock" && computerSelection === "scissors") {
             return "Rock beats scissors!";
-            winCount + 1;
+            winCount++;
         } else if (playerSelection === "paper" && computerSelection === "scissors") {
             return "Scissors beats paper!";
-            loseCount + 1;
+            loseCount++;
         } else if (playerSelection === "paper" && computerSelection === "paper") {
             return "It's a tie!";
         } else if (playerSelection === "scissors" && computerSelection === "scissors") {
@@ -45,11 +46,11 @@
             return "It's a tie!";
         } else if (playerSelection === "scissors" && computerSelection === "paper") {
             return "Scissors beats paper!";
-            winCount + 1;
+            winCount++;
         } else {
             return "I don't understand that. Did you spell it right?";
         }
-      }
+    }
     function game() {
         for (i=0; i<5; i++)
         alert(playRound());
@@ -61,6 +62,7 @@
           alert("The computer has beaten you!")
         }
     }
+    alert("This is a game of rock-paper-scissors. Surely you know it. Let's start.")
     game()
   </script>
 </body>
