@@ -95,6 +95,7 @@
     function results() {
         const divider = document.createElement("div");
         divider.style.border = "6px solid white";
+        divider.style.borderRadius = "15px"
         container.appendChild(divider);
 
         const h1 = document.createElement("h1")
@@ -119,6 +120,7 @@
         const newgame_button = document.createElement("button");
         newgame_button.textContent = "new game"
         newgame_button.addEventListener('click', new_game)
+        newgame_button.style.marginLeft = "100px"
         divider.appendChild(newgame_button)
     }
     /* function ending() {
