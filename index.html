@@ -5,9 +5,14 @@
   <meta charset="UTF-8"/>
 </head>
 <body>
+    <button id="button-rock" onClick="reply_click(this.id)">Rock</button>
+    <button id=button-paper onClick="reply_click(this.id)">Paper</button>
+    <button id=button-scissors onClick="reply_click(this.id)">Scissors</button>
+    <div id="container"></div>
   <script>
     let winCount = 0;
     let loseCount = 0;
+    let handsign = ""
 
     function computerPlay() {
         let num = Math.floor(Math.random() * 3);
@@ -19,48 +24,102 @@
             return "scissors";
         }
     }
+    function reply_click(clicked_id) {
+        handsign = clicked_id;
+    }
+
     function playRound(playerSelection, computerSelection) {
         computerSelection = computerPlay();
-        playerSelection = prompt("Choose: rock, paper, scissors:","");
-        playerSelection.toLowerCase();
-        if (playerSelection === "rock" && computerSelection === "paper") {
-            alert("Paper beats rock!");
-            return loseCount++;
-        } else if (playerSelection === "paper" && computerSelection === "rock") {
-            alert("Paper beats rock!");
-            return winCount++;
-        } else if (playerSelection === "scissors" && computerSelection === "rock") {
-            alert("Rock beats scissors!");
-            return loseCount++;
-        } else if (playerSelection === "rock" && computerSelection === "scissors") {
-            alert("Rock beats scissors!"); 
-            return winCount++;
-        } else if (playerSelection === "paper" && computerSelection === "scissors") {
-            alert("Scissors beats paper!") && loseCount++;
-        } else if (playerSelection === "paper" && computerSelection === "paper") {
-            alert("It's a tie!");
-        } else if (playerSelection === "scissors" && computerSelection === "scissors") {
-            alert("It's a tie!");
-        } else if (playerSelection === "rock" && computerSelection === "rock") {
-            alert("It's a tie!");
-        } else if (playerSelection === "scissors" && computerSelection === "paper") {
-            alert("Scissors beats paper!");
-            return winCount++;
+        playerSelection = handsign;
+        if ((winCount+loseCount) < 5) {
+            if (playerSelection === "button-rock" && computerSelection === "paper") {
+                alert("Paper beats rock!");
+                return loseCount++;
+            } else if (playerSelection === "button-paper" && computerSelection === "rock") {
+                alert("Paper beats rock!");
+                return winCount++;
+            } else if (playerSelection === "button-scissors" && computerSelection === "rock") {
+                alert("Rock beats scissors!");
+                return loseCount++;
+            } else if (playerSelection === "button-rock" && computerSelection === "scissors") {
+                alert("Rock beats scissors!"); 
+                return winCount++;
+            } else if (playerSelection === "button-paper" && computerSelection === "scissors") {
+                alert("Scissors beats paper!") && loseCount++;
+            } else if (playerSelection === "button-paper" && computerSelection === "paper") {
+                alert("It's a tie!");
+                return winCount++;
+                return loseCount++;
+            } else if (playerSelection === "button-scissors" && computerSelection === "scissors") {
+                alert("It's a tie!");
+                return winCount++;
+                return loseCount++;
+            } else if (playerSelection === "button-rock" && computerSelection === "rock") {
+                alert("It's a tie!");
+                return winCount++;
+                return loseCount++;
+            } else if (playerSelection === "button-scissors" && computerSelection === "paper") {
+                alert("Scissors beats paper!");
+                return winCount++;
+            }
         } else {
-            alert("I don't understand that. Did you spell it right?");
-            playRound();
+            game();
         }
     }
+
     function game() {
-        for (i=0; i<5; i++)
-        playRound();
         if (loseCount < winCount) {
           alert("You've beaten the computer!   乁༼☯‿☯✿༽ㄏ");
+          results();
         } else if (loseCount == winCount) {
-          alert("You couldn't beat the computer this time. It's a tie.   (ﾉ≧∇≦)ﾉ ﾐ ┻━┻")
+          alert("You couldn't beat the computer this time. It's a tie.   (ﾉ≧∇≦)ﾉ ﾐ ┻━┻");
+          results();
         } else if (loseCount > winCount) {
-          alert("The computer has beaten you!   (┛❍ᴥ❍)┛彡┻━┻")
+          alert("The computer has beaten you!   (┛❍ᴥ❍)┛彡┻━┻");
+          results();
         }
+    }
+
+    function score() {
+        if ((winCount+loseCount) < 5) {
+            return;
+        } else {
+            game();
+        }
+    }
+
+    function new_game() {
+        location.reload()
+    }
+
+    function results() {
+        const divider = document.createElement("div");
+        divider.style.border = "6px solid white";
+        container.appendChild(divider);
+
+        const h1 = document.createElement("h1")
+        h1.textContent = "Results:"
+        h1.style.color = "white"
+        divider.appendChild(h1);
+
+        const computer_result = document.createElement("h2");
+        computer_result.textContent = "Computer:" + " " + loseCount;
+        computer_result.style.color = "white"
+        divider.appendChild(computer_result);
+
+        const player_result = document.createElement("h2");
+        player_result.textContent = "Computer:" + " " + winCount;
+        player_result.style.color = "white"
+        divider.appendChild(player_result);
+
+        const img = document.createElement("img");
+        img.src = 'https://img1.picmix.com/output/pic/normal/8/3/7/8/6038738_149ac.gif';
+        divider.appendChild(img)
+
+        const newgame_button = document.createElement("button");
+        newgame_button.textContent = "new game"
+        newgame_button.addEventListener('click', new_game)
+        divider.appendChild(newgame_button)
     }
     /* function ending() {
         let playerSelectionX = prompt("Do you want to play another round? State it by typing 'yes' or 'no'.","")
@@ -74,8 +133,19 @@
             ending();
         }
     } */
+
+    const buttons = document.querySelectorAll('button');
+    buttons.forEach(button => button.addEventListener('click', playRound));
+    
+    const container = document.querySelector("#container")
+
+    document.body.style.backgroundColor = "#b06a02";
+
+
+
+
     alert("This is a game of rock-paper-scissors. Surely you know it. Let's start.")
-    game()
+    //score()
     /* ending() */
   </script>
 </body>
