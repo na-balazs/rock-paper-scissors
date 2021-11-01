@@ -8,7 +8,7 @@
     <button id="button-rock" onClick="reply_click(this.id)">Rock</button>
     <button id=button-paper onClick="reply_click(this.id)">Paper</button>
     <button id=button-scissors onClick="reply_click(this.id)">Scissors</button>
-    <div id="container"></div>
+    <ul id="container2" style="height:auto;width:140px;background-color: aliceblue;border-radius: 0.3rem;text-align: center;"></ul>
   <script>
     let winCount = 0;
     let loseCount = 0;
@@ -28,38 +28,46 @@
         handsign = clicked_id;
     }
 
+    const container2 = document.querySelector('#container2');
+    function board(txt) {
+        let li = document.createElement("li")
+        li.textContent = txt;
+        return li;
+    }
+
     function playRound(playerSelection, computerSelection) {
         computerSelection = computerPlay();
         playerSelection = handsign;
         if ((winCount+loseCount) < 5) {
             if (playerSelection === "button-rock" && computerSelection === "paper") {
-                alert("Paper beats rock!");
+                container2.appendChild(board("Paper beats rock!"));
                 return loseCount++;
             } else if (playerSelection === "button-paper" && computerSelection === "rock") {
-                alert("Paper beats rock!");
+                container2.appendChild(board("Paper beats rock!"));
                 return winCount++;
             } else if (playerSelection === "button-scissors" && computerSelection === "rock") {
-                alert("Rock beats scissors!");
+                container2.appendChild(board("Rock beats scissors!"));
                 return loseCount++;
             } else if (playerSelection === "button-rock" && computerSelection === "scissors") {
-                alert("Rock beats scissors!"); 
+                container2.appendChild(board("Rock beats scissors!")); 
                 return winCount++;
             } else if (playerSelection === "button-paper" && computerSelection === "scissors") {
-                alert("Scissors beats paper!") && loseCount++;
+                container2.appendChild(board("Scissors beats paper!"));
+                return loseCount++;
             } else if (playerSelection === "button-paper" && computerSelection === "paper") {
-                alert("It's a tie!");
+                container2.appendChild(board("It's a tie!"));
                 return winCount++;
                 return loseCount++;
             } else if (playerSelection === "button-scissors" && computerSelection === "scissors") {
-                alert("It's a tie!");
+                container2.appendChild(board("It's a tie!"));
                 return winCount++;
                 return loseCount++;
             } else if (playerSelection === "button-rock" && computerSelection === "rock") {
-                alert("It's a tie!");
+                container2.appendChild(board("It's a tie!"));
                 return winCount++;
                 return loseCount++;
             } else if (playerSelection === "button-scissors" && computerSelection === "paper") {
-                alert("Scissors beats paper!");
+                container2.appendChild(board("Scissors beats paper!"));
                 return winCount++;
             }
         } else {
@@ -70,13 +78,13 @@
     function game() {
         if (loseCount < winCount) {
           alert("You've beaten the computer!   乁༼☯‿☯✿༽ㄏ");
-          results();
+          ending();
         } else if (loseCount == winCount) {
           alert("You couldn't beat the computer this time. It's a tie.   (ﾉ≧∇≦)ﾉ ﾐ ┻━┻");
-          results();
+          ending();
         } else if (loseCount > winCount) {
           alert("The computer has beaten you!   (┛❍ᴥ❍)┛彡┻━┻");
-          results();
+          ending();
         }
     }
 
@@ -92,7 +100,7 @@
         location.reload()
     }
 
-    function results() {
+    /* function results() {
         const divider = document.createElement("div");
         divider.style.border = "6px solid white";
         divider.style.borderRadius = "15px"
@@ -122,19 +130,20 @@
         newgame_button.addEventListener('click', new_game)
         newgame_button.style.marginLeft = "100px"
         divider.appendChild(newgame_button)
-    }
-    /* function ending() {
+    } */
+
+    function ending() {
         let playerSelectionX = prompt("Do you want to play another round? State it by typing 'yes' or 'no'.","")
         playerSelectionX.toLowerCase();
-        if (playerSelection === "yes") {
-            game();
-        } else if (playerSelection === "no") {
+        if (playerSelectionX === "yes") {
+            new_game();
+        } else if (playerSelectionX === "no") {
             alert("Bye!  (づ｡◕‿‿◕｡)づ");
         } else {
             alert("I don't understand that. Did you spell it right?");
             ending();
         }
-    } */
+    }
 
     const buttons = document.querySelectorAll('button');
     buttons.forEach(button => button.addEventListener('click', playRound));
@@ -142,13 +151,14 @@
     const container = document.querySelector("#container")
 
     document.body.style.backgroundColor = "#b06a02";
+    
 
 
 
 
-    alert("This is a game of rock-paper-scissors. Surely you know it. Let's start.")
-    //score()
-    /* ending() */
+    // alert("This is a game of rock-paper-scissors. Surely you know it. Let's start.")
+    score()
+    // ending()
   </script>
 </body>
 </html>
